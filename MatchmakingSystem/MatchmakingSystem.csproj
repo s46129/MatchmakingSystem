@@ -39,10 +39,10 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Coord.cs" />
-        <Compile Include="DistanceBased.cs" />
+        <Compile Include="DistanceStrategy.cs" />
         <Compile Include="FakeDataMaker.cs" />
         <Compile Include="Habit.cs" />
-        <Compile Include="HabitBase.cs" />
+        <Compile Include="HabitStrategy.cs" />
         <Compile Include="Individual.cs" />
         <Compile Include="MatchmakingStrategy.cs" />
         <Compile Include="MatchSystem.cs" />
