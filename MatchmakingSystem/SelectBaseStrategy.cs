@@ -3,10 +3,9 @@ using System.Linq;
 
 namespace MatchmakingSystem
 {
-    public abstract class SelectBaseStrategy : MatchmakingStrategy
+    public abstract class SelectBaseStrategy : IMatchmakingStrategy
     {
-        public abstract Pair Match(Individual individual);
-        public abstract void SelectBy();
+        public abstract List<Pair> Match(List<Individual> individuals);
 
         public Individual OnSameCondition(List<Individual> sameConditionIndividuals)
         {

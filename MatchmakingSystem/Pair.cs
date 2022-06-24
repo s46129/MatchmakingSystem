@@ -2,11 +2,11 @@ namespace MatchmakingSystem
 {
     public class Pair
     {
-        private Individual[] _pairedIndividuals;
+        public Individual[] PairedIndividuals { get; }
 
         public Pair(Individual[] pairedIndividuals)
         {
-            _pairedIndividuals = pairedIndividuals;
+            PairedIndividuals = pairedIndividuals;
         }
     }
 }

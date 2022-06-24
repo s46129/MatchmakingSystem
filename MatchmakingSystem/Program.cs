@@ -7,8 +7,11 @@ namespace MatchmakingSystem
     {
         public static void Main(string[] args)
         {
-            MatchSystem matchSystem = new MatchSystem(new FakeDataMaker().FakeData(30), new HabitBase());
+            MatchSystem matchSystem = new MatchSystem(
+                new FakeDataMaker().FakeData(30),
+                new HabitStrategy().Reverse());
+            List<Pair> result = matchSystem.StartMatch();
+            matchSystem.ShowResult(result);
         }
-
     }
 }

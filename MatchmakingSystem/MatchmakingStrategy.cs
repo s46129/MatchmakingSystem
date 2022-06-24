@@ -1,7 +1,9 @@
-using MatchmakingSystem;
+using System.Collections.Generic;
 
-public interface MatchmakingStrategy
+namespace MatchmakingSystem
 {
-	Pair Match(Individual individual);
-
+    public interface IMatchmakingStrategy
+    {
+        List<Pair> Match(List<Individual> individuals);
+    }
 }
