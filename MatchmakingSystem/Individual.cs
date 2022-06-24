@@ -19,7 +19,7 @@ namespace MatchmakingSystem
         public Coord Coord;
 
 
-        public Individual(string name,string gender,int age,string habits,string intro=null)
+        public Individual(string name,string gender,int age,string habits, Coord coord, string intro=null)
         {
             if (age<18)
             {
@@ -28,6 +28,7 @@ namespace MatchmakingSystem
             Name = name;
             Gender = gender;
             Age = age;
+            Coord = coord;
             Habits = new Habit(habits);
             Intro = intro;
         }

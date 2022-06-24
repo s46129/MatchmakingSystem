@@ -1,6 +1,14 @@
-public class Coord
+namespace MatchmakingSystem
 {
-	private float x;
+    public class Coord
+    {
+        public float X;
+        public float Y;
 
-	private float y;
+        public Coord(float x, float y)
+        {
+            X = x;
+            Y = y;
+        }
+    }
 }

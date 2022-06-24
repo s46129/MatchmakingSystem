@@ -35,7 +35,7 @@ namespace MatchmakingSystem
             "余", "盧", "梁", "趙", "顏", "柯", "翁", "魏", "孫", "戴",
         };
 
-        private List<string> _maleName = new List<string>()
+        private readonly List<string> _maleName = new List<string>()
         {
             "承翰",
             "冠廷",
@@ -139,7 +139,7 @@ namespace MatchmakingSystem
             "佑丞",
         };
 
-        private List<string> _femaleName = new List<string>()
+        private readonly List<string> _femaleName = new List<string>()
         {
             "思妤",
             "宜蓁",
@@ -243,12 +243,16 @@ namespace MatchmakingSystem
             "欣穎",
         };
 
+
         public List<Individual> FakeData(int count)
         {
             List<Individual> fakeData = new List<Individual>();
+
+            for (int i = 0; i < count; i++)
             {
                 fakeData.Add(GenerateIndividual());
             }
+
 
             return fakeData;
         }
@@ -258,38 +262,54 @@ namespace MatchmakingSystem
             string gender = RandomGender();
 
             Individual individual = new Individual(
-                RandomName(gender), 
-                gender, 
-                _random.Next(18, 60),
-                RandomHabits());
+                RandomName(gender),
+                gender,
+                RandomAge(18, 60),
+                RandomHabits(1, 5),
+                RandomCoord(0, 500));
             return individual;
         }
 
-        private string RandomHabits()
+        private int RandomAge(int minValue, int maxValue)
         {
-            string combineString = "";
-
-            _habitList = _habitList.OrderBy(x => _random.Next()).ToList();
-            for (int i = 0; i < _random.Next(1, 5); i++)
-            {
-                combineString += _habitList[i] + ",";
-            }
-
-            return combineString;
+            return _random.Next(minValue, maxValue);
         }
 
-        string RandomGender()
+        private string RandomHabits(int minValue, int maxValue)
+        {
+            string combineHabits = "";
+
+            _habitList = _habitList.OrderBy(x => _random.Next()).ToList();
+            int randomCount = _random.Next(minValue, maxValue);
+            for (int i = 0; i < randomCount; i++)
+            {
+                combineHabits += _habitList[i];
+                if (i < randomCount - 1)
+                {
+                    combineHabits += ",";
+                }
+            }
+
+            return combineHabits;
+        }
+
+        private string RandomGender()
         {
             return _random.Next(0, 2) == 0 ? "MALE" : "FEMALE";
         }
 
-        public string RandomName(string gender)
+        private string RandomName(string gender)
         {
             string first = _firstName[_random.Next(0, _firstName.Count)];
             string lastName = gender == "MALE"
                 ? _maleName[_random.Next(_maleName.Count)]
                 : _femaleName[_random.Next(_femaleName.Count)];
             return first + lastName;
+        }
+
+        Coord RandomCoord(int minValue, int maxValue)
+        {
+            return new Coord(_random.Next(minValue, maxValue), _random.Next(minValue, maxValue));
         }
     }
 }
