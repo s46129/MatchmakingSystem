@@ -15,8 +15,8 @@ namespace MatchmakingSystem
 
             //選擇要配對的模式
             // IMatchmakingStrategy matchmakingStrategy = new HabitStrategy();
-            // IMatchmakingStrategy matchmakingStrategy = new HabitStrategy().Reverse();
-            IMatchmakingStrategy matchmakingStrategy = new DistanceStrategy().Reverse();
+            IMatchmakingStrategy matchmakingStrategy = new HabitStrategy().Reverse();
+            // IMatchmakingStrategy matchmakingStrategy = new DistanceStrategy();
             // IMatchmakingStrategy matchmakingStrategy = new DistanceStrategy().Reverse();
 
             //執行配對
