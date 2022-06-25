@@ -49,7 +49,7 @@
         <Compile Include="Pair.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="SelectBaseStrategy.cs" />
+        <Compile Include="ReverableBaseStrategy.cs" />
     </ItemGroup>
     <ItemGroup>
       <Content Include="OOA_UML.jpg" />

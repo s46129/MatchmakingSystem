@@ -1,20 +1,24 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MatchmakingSystem
 {
-    public class HabitStrategy : SelectBaseStrategy
+    public class HabitStrategy : ReverableBaseStrategy
     {
-  
-        private bool _isReverse = false;
-        public override List<Pair> Match(List<Individual> individuals)
+        protected override void ShowMatchTip()
         {
-            throw new System.NotImplementedException();
+            Console.WriteLine($"Pair By {(IsReverse ? "different" : "same")} Habit");
         }
 
-        public HabitStrategy Reverse()
+        protected override Individual FindReversePairIndividual(List<Individual> waitForPair, Individual pairIndividual)
         {
-            _isReverse = !_isReverse;
-            return this;
+            throw new NotImplementedException();
+        }
+
+        protected override Individual FindBestPairIndividual(List<Individual> waitForPair, Individual pairIndividual)
+        {
+            throw new NotImplementedException();
         }
     }
 }

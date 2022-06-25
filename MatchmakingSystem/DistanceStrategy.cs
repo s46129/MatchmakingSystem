@@ -4,47 +4,26 @@ using System.Linq;
 
 namespace MatchmakingSystem
 {
-    public class DistanceStrategy : SelectBaseStrategy
+    public class DistanceStrategy : ReverableBaseStrategy
     {
-        private bool _isReverse = false;
-
-        public override List<Pair> Match(List<Individual> individuals)
+        protected override void ShowMatchTip()
         {
-            Console.WriteLine($"Pair By{(_isReverse ? " Reverse " : " ")}Distance");
-
-            List<Pair> pairs = new List<Pair>();
-            List<Individual> waitForPair = new List<Individual>(individuals);
-
-            while (waitForPair.Count > 0)
-            {
-                Individual pairIndividual = waitForPair[0];
-                waitForPair.Remove(pairIndividual);
-
-                Individual bestPair;
-
-                if (_isReverse)
-                {
-                    bestPair = waitForPair
-                        .OrderByDescending(individual => individual.Coord.Distance(pairIndividual.Coord))
-                        .First();
-                }
-                else
-                {
-                    bestPair = waitForPair.OrderBy(individual => individual.Coord.Distance(pairIndividual.Coord))
-                        .First();
-                }
-
-                pairs.Add(new Pair(pairIndividual, bestPair));
-                waitForPair.Remove(bestPair);
-            }
-
-            return pairs;
+            Console.WriteLine($"Pair By{(IsReverse ? " Reverse " : " ")}Distance");
         }
 
-        public DistanceStrategy Reverse()
+        protected override Individual FindReversePairIndividual(List<Individual> waitForPair, Individual pairIndividual)
         {
-            _isReverse = !_isReverse;
-            return this;
+            Individual bestPair = waitForPair.OrderBy(individual => individual.Coord.Distance(pairIndividual.Coord))
+                .First();
+            return bestPair;
+        }
+
+        protected override Individual FindBestPairIndividual(List<Individual> waitForPair, Individual pairIndividual)
+        {
+            Individual bestPair = waitForPair
+                .OrderByDescending(individual => individual.Coord.Distance(pairIndividual.Coord))
+                .First();
+            return bestPair;
         }
     }
 }

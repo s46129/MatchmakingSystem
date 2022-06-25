@@ -1,11 +1,12 @@
 namespace MatchmakingSystem
 {
-	public class Habit
-	{
-		public Habit(string habits)
-		{
-			Habits = habits.Split(',');
-		}
-		public string[] Habits;
-	}
+    public class Habit
+    {
+        public Habit(string habits)
+        {
+            HabitList = habits.Split(',');
+        }
+
+        public readonly string[] HabitList;
+    }
 }
