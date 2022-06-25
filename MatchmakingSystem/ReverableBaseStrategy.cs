@@ -18,9 +18,11 @@ namespace MatchmakingSystem
                 Individual pairIndividual = waitForPair[0];
                 waitForPair.Remove(pairIndividual);
 
-                Individual bestPair = IsReverse
-                    ? FindBestPairIndividual(waitForPair, pairIndividual)
-                    : FindReversePairIndividual(waitForPair, pairIndividual);
+                Individual bestPair;
+                if (IsReverse)
+                    bestPair = FindBestPairIndividual(waitForPair, pairIndividual);
+                else
+                    bestPair = FindReversePairIndividual(waitForPair, pairIndividual);
 
                 pairs.Add(new Pair(pairIndividual, bestPair));
                 waitForPair.Remove(bestPair);
@@ -31,10 +33,9 @@ namespace MatchmakingSystem
 
         protected abstract void ShowMatchTip();
 
-        protected abstract Individual
-            FindReversePairIndividual(List<Individual> waitForPair, Individual pairIndividual);
-
         protected abstract Individual FindBestPairIndividual(List<Individual> waitForPair, Individual pairIndividual);
+
+        protected abstract Individual FindReversePairIndividual(List<Individual> waitForPair, Individual pairIndividual);
 
         public ReverableBaseStrategy Reverse()
         {

@@ -11,19 +11,17 @@ namespace MatchmakingSystem
             Console.WriteLine($"Pair By{(IsReverse ? " Reverse " : " ")}Distance");
         }
 
-        protected override Individual FindReversePairIndividual(List<Individual> waitForPair, Individual pairIndividual)
-        {
-            Individual bestPair = waitForPair.OrderBy(individual => individual.Coord.Distance(pairIndividual.Coord))
-                .First();
-            return bestPair;
-        }
-
         protected override Individual FindBestPairIndividual(List<Individual> waitForPair, Individual pairIndividual)
         {
-            Individual bestPair = waitForPair
+            return waitForPair
                 .OrderByDescending(individual => individual.Coord.Distance(pairIndividual.Coord))
                 .First();
-            return bestPair;
+        }
+
+        protected override Individual FindReversePairIndividual(List<Individual> waitForPair, Individual pairIndividual)
+        {
+            return waitForPair.OrderBy(individual => individual.Coord.Distance(pairIndividual.Coord))
+                .First();
         }
     }
 }
