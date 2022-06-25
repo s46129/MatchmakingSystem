@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace MatchmakingSystem
+namespace MatchmakingSystem.Strategy
 {
     public abstract class ReverableBaseStrategy : IMatchmakingStrategy
     {

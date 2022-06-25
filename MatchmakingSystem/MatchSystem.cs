@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MatchmakingSystem.Strategy;
 
 namespace MatchmakingSystem
 {
@@ -30,7 +31,7 @@ namespace MatchmakingSystem
 
                 foreach (var individual in pair.PairedIndividuals)
                 {
-                    individual.PrintInfo();
+                    Console.WriteLine(individual.ToString());
                 }
 
                 Console.WriteLine("\n");

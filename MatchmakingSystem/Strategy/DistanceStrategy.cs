@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MatchmakingSystem
+namespace MatchmakingSystem.Strategy
 {
     public class DistanceStrategy : ReverableBaseStrategy
     {
