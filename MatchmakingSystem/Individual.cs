@@ -1,3 +1,4 @@
+using System;
 using System.Security.Authentication;
 
 namespace MatchmakingSystem
@@ -19,18 +20,33 @@ namespace MatchmakingSystem
         public Coord Coord;
 
 
-        public Individual(string name,string gender,int age,string habits, Coord coord, string intro=null)
+        public Individual(string name, string gender, int age, string habits, Coord coord, string intro = null)
         {
-            if (age<18)
+            if (age < 18)
             {
                 throw new AuthenticationException("Age < 18");
             }
+
             Name = name;
             Gender = gender;
             Age = age;
             Coord = coord;
             Habits = new Habit(habits);
             Intro = intro;
+        }
+
+
+        public void PrintInfo()
+        {
+            Console.WriteLine($"\n------ {Id}. {Name} ------");
+            Console.WriteLine($"Age: {Age}");
+            Console.WriteLine($"Gender : {Gender}");
+            Console.WriteLine($"Coord: X:{Coord.X} Y:{Coord.Y}");
+            Console.Write("Habit:");
+            foreach (var habit in Habits.HabitList)
+            {
+                Console.Write($"{habit} ");
+            }
         }
     }
 }

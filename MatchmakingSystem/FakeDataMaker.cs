@@ -6,6 +6,8 @@ namespace MatchmakingSystem
 {
     internal class FakeDataMaker
     {
+        #region Property
+
         readonly Random _random = new Random();
 
         private List<string> _habitList = new List<string>()
@@ -243,6 +245,7 @@ namespace MatchmakingSystem
             "欣穎",
         };
 
+        #endregion
 
         public List<Individual> FakeData(int count)
         {
@@ -253,6 +256,7 @@ namespace MatchmakingSystem
                 fakeData.Add(GenerateIndividual());
             }
 
+            PrintData(fakeData);
 
             return fakeData;
         }
@@ -269,6 +273,8 @@ namespace MatchmakingSystem
                 RandomCoord(0, 500));
             return individual;
         }
+
+        #region Random Method
 
         private int RandomAge(int minValue, int maxValue)
         {
@@ -311,5 +317,22 @@ namespace MatchmakingSystem
         {
             return new Coord(_random.Next(minValue, maxValue), _random.Next(minValue, maxValue));
         }
+
+        #endregion
+
+        #region Debug
+
+        private static void PrintData(List<Individual> fakeData)
+        {
+            Console.WriteLine("============= Print Fake Data =============");
+            foreach (var individual in fakeData)
+            {
+                individual.PrintInfo();
+            }
+
+            Console.WriteLine("\n=============================\n");
+        }
+
+        #endregion
     }
 }
