@@ -4,9 +4,9 @@ namespace MatchmakingSystem
     {
         public Individual[] PairedIndividuals { get; }
 
-        public Pair(Individual[] pairedIndividuals)
+        public Pair(params Individual[] pairedIndividual)
         {
-            PairedIndividuals = pairedIndividuals;
+            PairedIndividuals = pairedIndividual;
         }
     }
 }

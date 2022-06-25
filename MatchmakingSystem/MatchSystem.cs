@@ -27,19 +27,26 @@ namespace MatchmakingSystem
             {
                 Console.WriteLine($"----- Pair {index} -----");
                 Pair pair = result[index];
+
                 foreach (var individual in pair.PairedIndividuals)
                 {
-                    Console.WriteLine(
-                        $"{individual.Id}. {individual.Name} => Age:{individual.Age}  ,Gender:{individual.Gender} \nHabit:{individual.Habits} ");
+                    individual.PrintInfo();
                 }
 
                 Console.WriteLine("\n");
+                if (pair.PairedIndividuals.Length == 2)
+                {
+                    Console.WriteLine(
+                        $"Distance: {pair.PairedIndividuals[0].Coord.Distance(pair.PairedIndividuals[1].Coord):F}");
+                }
+
+                Console.WriteLine("--------------------");
             }
         }
 
         private void SetIndividualsId(List<Individual> individuals)
         {
-            for (int i = 1; i < individuals.Count + 1; i++)
+            for (int i = 0; i < individuals.Count; i++)
             {
                 int id = i;
                 individuals[i].Id = id;

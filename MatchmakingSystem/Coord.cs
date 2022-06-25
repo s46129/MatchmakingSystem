@@ -1,3 +1,5 @@
+using System;
+
 namespace MatchmakingSystem
 {
     public class Coord
@@ -10,5 +12,11 @@ namespace MatchmakingSystem
             X = x;
             Y = y;
         }
+
+        public double Distance(Coord target)
+        {
+            return Math.Pow(Math.Pow(X - target.X, 2) + Math.Pow(Y - target.Y, 2), 0.5f);
+        }
+
     }
 }
