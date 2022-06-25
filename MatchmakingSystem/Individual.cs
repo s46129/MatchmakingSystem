@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Security.Authentication;
 
 namespace MatchmakingSystem
@@ -7,46 +8,63 @@ namespace MatchmakingSystem
     {
         public int Id;
 
-        public string Name;
+        private string Name;
 
-        public string Gender;
+        private string Gender;
 
-        public int Age;
+        private int Age;
 
-        public string Intro;
+        private string Intro;
 
-        public Habit Habits;
+        public readonly List<Habit> Habits = new List<Habit>();
 
-        public Coord Coord;
+        // public readonly Habits Habits;
+        public readonly Coord Coord;
 
 
-        public Individual(string name, string gender, int age, string habits, Coord coord, string intro = null)
+        public Individual(string name, string gender, int age, string habitsString, Coord coord, string intro = null)
         {
-            if (age < 18)
+            Name = name;
+            Gender = gender;
+            SetAge(age);
+            Coord = coord;
+            SetHabits(habitsString);
+            Intro = intro;
+        }
+
+        void SetAge(int value)
+        {
+            if (value < 18)
             {
                 throw new AuthenticationException("Age < 18");
             }
 
-            Name = name;
-            Gender = gender;
-            Age = age;
-            Coord = coord;
-            Habits = new Habit(habits);
-            Intro = intro;
+            Age = value;
         }
 
-
-        public void PrintInfo()
+        void SetHabits(string habitsString)
         {
-            Console.WriteLine($"\n------ {Id}. {Name} ------");
-            Console.WriteLine($"Age: {Age}");
-            Console.WriteLine($"Gender : {Gender}");
-            Console.WriteLine($"Coord: X:{Coord.X} Y:{Coord.Y}");
-            Console.Write("Habit:");
-            foreach (var habit in Habits.HabitList)
+            string[] splitHabits = habitsString.Split(',');
+            foreach (string habitString in splitHabits)
             {
-                Console.Write($"{habit} ");
+                Habits.Add(new Habit(habitString));
             }
+        }
+
+        public override string ToString()
+        {
+            string info = string.Concat(
+                $"\n------ {Id}. {Name} ------",
+                $"\nAge: {Age}",
+                $"\nGender : {Gender}",
+                $"\nCoord: X:{Coord.X} Y:{Coord.Y}",
+                "\nHabit:\n");
+            foreach (var habit in Habits)
+            {
+                info += $"{habit.Name} ";
+            }
+
+            return info;
         }
     }
 }

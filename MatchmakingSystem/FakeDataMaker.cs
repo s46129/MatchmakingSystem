@@ -10,7 +10,7 @@ namespace MatchmakingSystem
 
         static readonly Random Random = new Random();
 
-        private static  List<string> _habitList = new List<string>()
+        private static List<string> _habitList = new List<string>()
         {
             "籃球",
             "羽球",
@@ -293,7 +293,7 @@ namespace MatchmakingSystem
                 combineHabits += _habitList[i];
                 if (i < randomCount - 1)
                 {
-                    combineHabits += ",";
+                    combineHabits += ',';
                 }
             }
 
@@ -328,7 +328,7 @@ namespace MatchmakingSystem
             Console.WriteLine("============= Print Fake Data =============");
             foreach (var individual in fakeData)
             {
-                individual.PrintInfo();
+                Console.WriteLine(individual.ToString());
             }
 
             Console.WriteLine("\n=============================\n");

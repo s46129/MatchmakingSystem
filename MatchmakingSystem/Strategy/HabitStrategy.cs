@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MatchmakingSystem
+namespace MatchmakingSystem.Strategy
 {
     public class HabitStrategy : ReverableBaseStrategy
     {
@@ -14,19 +14,19 @@ namespace MatchmakingSystem
         protected override Individual FindBestPairIndividual(List<Individual> waitForPair, Individual pairIndividual)
         {
             waitForPair = waitForPair.OrderBy(individual =>
-                pairIndividual.Habits.HabitList.Length).ToList();
-            
+                pairIndividual.Habits.Count).ToList();
+
             return waitForPair.OrderBy(individual =>
-                pairIndividual.Habits.HabitList.Intersect(individual.Habits.HabitList).Count()).First();
+                pairIndividual.Habits.Intersect(individual.Habits).Count()).First();
         }
 
         protected override Individual FindReversePairIndividual(List<Individual> waitForPair, Individual pairIndividual)
         {
             waitForPair = waitForPair.OrderBy(individual =>
-                pairIndividual.Habits.HabitList.Length).ToList();
+                pairIndividual.Habits.Count).ToList();
 
             return waitForPair.OrderByDescending(individual =>
-                pairIndividual.Habits.HabitList.Intersect(individual.Habits.HabitList).Count()).First();
+                pairIndividual.Habits.Intersect(individual.Habits).Count()).First();
         }
     }
 }

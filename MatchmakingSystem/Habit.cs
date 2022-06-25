@@ -2,11 +2,11 @@ namespace MatchmakingSystem
 {
     public class Habit
     {
+        public string Name { get; }
+
         public Habit(string habits)
         {
-            HabitList = habits.Split(',');
+            Name = habits;
         }
-
-        public readonly string[] HabitList;
     }
 }
