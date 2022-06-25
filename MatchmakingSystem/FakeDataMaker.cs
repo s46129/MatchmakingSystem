@@ -256,6 +256,7 @@ namespace MatchmakingSystem
                 fakeData.Add(GenerateIndividual());
             }
 
+            //如果不需要看到，可以關閉
             PrintData(fakeData);
 
             return fakeData;
