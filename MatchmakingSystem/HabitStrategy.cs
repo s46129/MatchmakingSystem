@@ -11,14 +11,22 @@ namespace MatchmakingSystem
             Console.WriteLine($"Pair By {(IsReverse ? "different" : "same")} Habit");
         }
 
-        protected override Individual FindReversePairIndividual(List<Individual> waitForPair, Individual pairIndividual)
-        {
-            throw new NotImplementedException();
-        }
-
         protected override Individual FindBestPairIndividual(List<Individual> waitForPair, Individual pairIndividual)
         {
-            throw new NotImplementedException();
+            waitForPair = waitForPair.OrderBy(individual =>
+                pairIndividual.Habits.HabitList.Length).ToList();
+            
+            return waitForPair.OrderBy(individual =>
+                pairIndividual.Habits.HabitList.Intersect(individual.Habits.HabitList).Count()).First();
+        }
+
+        protected override Individual FindReversePairIndividual(List<Individual> waitForPair, Individual pairIndividual)
+        {
+            waitForPair = waitForPair.OrderBy(individual =>
+                pairIndividual.Habits.HabitList.Length).ToList();
+
+            return waitForPair.OrderByDescending(individual =>
+                pairIndividual.Habits.HabitList.Intersect(individual.Habits.HabitList).Count()).First();
         }
     }
 }
