@@ -8,9 +8,9 @@ namespace MatchmakingSystem
     {
         #region Property
 
-        readonly Random _random = new Random();
+        static readonly Random Random = new Random();
 
-        private List<string> _habitList = new List<string>()
+        private static  List<string> _habitList = new List<string>()
         {
             "籃球",
             "羽球",
@@ -28,7 +28,7 @@ namespace MatchmakingSystem
             "溜滑板",
         };
 
-        private readonly List<string> _firstName = new List<string>()
+        private static readonly List<string> FirstNames = new List<string>()
         {
             "陳", "林", "黃", "張", "李", "王", "吳", "劉", "蔡", "楊",
             "許", "鄭", "謝", "洪", "郭", "邱", "曾", "廖", "賴", "徐",
@@ -37,7 +37,7 @@ namespace MatchmakingSystem
             "余", "盧", "梁", "趙", "顏", "柯", "翁", "魏", "孫", "戴",
         };
 
-        private readonly List<string> _maleName = new List<string>()
+        private static readonly List<string> MaleNames = new List<string>()
         {
             "承翰",
             "冠廷",
@@ -141,7 +141,7 @@ namespace MatchmakingSystem
             "佑丞",
         };
 
-        private readonly List<string> _femaleName = new List<string>()
+        private static readonly List<string> FemaleNames = new List<string>()
         {
             "思妤",
             "宜蓁",
@@ -247,7 +247,7 @@ namespace MatchmakingSystem
 
         #endregion
 
-        public List<Individual> FakeData(int count)
+        public static List<Individual> GetFakeData(int count)
         {
             List<Individual> fakeData = new List<Individual>();
 
@@ -262,7 +262,7 @@ namespace MatchmakingSystem
             return fakeData;
         }
 
-        Individual GenerateIndividual()
+        static Individual GenerateIndividual()
         {
             string gender = RandomGender();
 
@@ -277,17 +277,17 @@ namespace MatchmakingSystem
 
         #region Random Method
 
-        private int RandomAge(int minValue, int maxValue)
+        private static int RandomAge(int minValue, int maxValue)
         {
-            return _random.Next(minValue, maxValue);
+            return Random.Next(minValue, maxValue);
         }
 
-        private string RandomHabits(int minValue, int maxValue)
+        private static string RandomHabits(int minValue, int maxValue)
         {
             string combineHabits = "";
 
-            _habitList = _habitList.OrderBy(x => _random.Next()).ToList();
-            int randomCount = _random.Next(minValue, maxValue);
+            _habitList = _habitList.OrderBy(x => Random.Next()).ToList();
+            int randomCount = Random.Next(minValue, maxValue);
             for (int i = 0; i < randomCount; i++)
             {
                 combineHabits += _habitList[i];
@@ -300,23 +300,23 @@ namespace MatchmakingSystem
             return combineHabits;
         }
 
-        private string RandomGender()
+        private static string RandomGender()
         {
-            return _random.Next(0, 2) == 0 ? "MALE" : "FEMALE";
+            return Random.Next(0, 2) == 0 ? "MALE" : "FEMALE";
         }
 
-        private string RandomName(string gender)
+        private static string RandomName(string gender)
         {
-            string first = _firstName[_random.Next(0, _firstName.Count)];
+            string first = FirstNames[Random.Next(0, FirstNames.Count)];
             string lastName = gender == "MALE"
-                ? _maleName[_random.Next(_maleName.Count)]
-                : _femaleName[_random.Next(_femaleName.Count)];
+                ? MaleNames[Random.Next(MaleNames.Count)]
+                : FemaleNames[Random.Next(FemaleNames.Count)];
             return first + lastName;
         }
 
-        Coord RandomCoord(int minValue, int maxValue)
+        static Coord RandomCoord(int minValue, int maxValue)
         {
-            return new Coord(_random.Next(minValue, maxValue), _random.Next(minValue, maxValue));
+            return new Coord(Random.Next(minValue, maxValue), Random.Next(minValue, maxValue));
         }
 
         #endregion

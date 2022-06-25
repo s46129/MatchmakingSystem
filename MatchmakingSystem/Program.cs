@@ -11,7 +11,7 @@ namespace MatchmakingSystem
             Console.OutputEncoding = Encoding.UTF8;
 
             //取得用戶資料
-            List<Individual> individualsData = new FakeDataMaker().FakeData(30);
+            List<Individual> individualsData = FakeDataMaker.GetFakeData(30);
 
             //選擇要配對的模式
             // IMatchmakingStrategy matchmakingStrategy = new HabitStrategy();
